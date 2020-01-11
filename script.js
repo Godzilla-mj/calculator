@@ -28,6 +28,8 @@ let operate = (a, oper, b) => {
 	}	
 }
 
+let sign;
+
 function findSign(){
 	if(oper == "add"){
 		console.log("oper is add")
@@ -56,6 +58,7 @@ let updatePrevCalc = () => prevDisplay.textContent = prevDisplayValue;
 let updateCalc = () =>{
 	displayValue = result
 	updateDisplay()
+	prevCalc()
 	a = result
 }
 
@@ -100,7 +103,6 @@ let addOper = () => {
 
 let equal = () =>{
 	b = displayValue;
-	prevCalc()
 	operate(Number(a), oper, Number(b));
 }
 
