@@ -20,14 +20,10 @@ let displayValue = 0;
 let a = 0;
 let oper = "";
 let b = 0;
-console.log("test");
 let tempResult = operate(oper, a, b);
-console.log("test 2")
 
-console.log("test");
 let updateDisplay = () => {
 	display.textContent = displayValue
-	console.log("updateDisplay");
 };
 let addDisplay = () => {!0 ?
 	(displayValue += this.value, updateDisplay()) :
@@ -47,7 +43,7 @@ let addOper = (a, oper) => {
 
 
 const numBtns = document.querySelectorAll('.num');
-numBtns.forEach(button => (button.addEventListener('click', addDisplay)));
+numBtns.forEach(button => (button.addEventListener('click', addDisplay));
 
 const operBtns = document.querySelectorAll('.oper');
 operBtns.forEach(button => (button.addEventListener('click'), addOper));
