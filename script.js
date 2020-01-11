@@ -40,8 +40,8 @@ function addDisplay() {
 		displayValue = ''
 		console.log("addDisplay called but no value input")
 	}
-	displayValue += document.getElementById(this).value
-	console.log("addDisplay called AND value input");
+	displayValue += this.value
+	console.log("addDisplay called AND " + this.value + " inputted");
 };
 
 let clearDisplay = () => (displayValue = 0, updateDisplay())
