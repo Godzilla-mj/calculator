@@ -28,22 +28,34 @@ let tempResult = operate(oper, a, b);
 let updateDisplay = () => {
 	display.textContent = displayValue
 };
-
+/*
 let addDisplay = () => {displayValue != 0 ?
-	displayValue += this.value : displayValue = '';
+	displayValue += document.getElementById(this.value) : displayValue = '';
+	console.log(numBtns.value + " addDisplay called")
 	updateDisplay()
 }
+*/
+function addDisplay() {
+	if(displayValue == 0){
+		displayValue = ''
+		console.log("addDisplay called but no value input")
+	}
+	displayValue += document.getElementById(this).value
+	console.log("addDisplay called AND value input");
+};
 
 let clearDisplay = () => (displayValue = 0, updateDisplay())
 let delLast = () => {displayValue.length > 1 ?
 	displayValue = displayValue.slice(0,-1) : displayValue = 0;
 	updateDisplay()
 }
+/*
 let addOper = (a, oper) => {
 	a = displayValue;
 	oper = document.getElementByGroup('oper').value
 	clearDisplay()
 }
+*/
 
 //button event listeners
 const numBtns = document.querySelectorAll('.num');
@@ -52,7 +64,9 @@ numBtns.forEach(button =>{
 		console.log("numBtn clicked")
 });
 
+/*
 const operBtns = document.querySelectorAll('.oper');
 operBtns.forEach(button =>{
 	button.addEventListener('click', addOper);
 });
+*/
