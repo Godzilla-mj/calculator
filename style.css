@@ -1,0 +1,17 @@
+#display{
+	grid-column: span 4;
+	text-align: right;
+	font-size: 24px;
+	}
+
+#calculator{
+	width: 400px;
+	height: 500px;
+	display: grid;
+	grid-template: repeat(6, 1fr) / repeat(4, 1fr);
+
+}
+
+.wide{
+	grid-column: span 2
+}
