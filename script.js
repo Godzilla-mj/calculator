@@ -90,3 +90,5 @@ document.querySelector('#CE').addEventListener('click', clearE)
 document.querySelector('#C').addEventListener('click', clearDisplay)
 document.querySelector('#del').addEventListener('click', delLast)
 document.querySelector('#eq').addEventListener('click', equal)
+
+clearE()
