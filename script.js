@@ -21,9 +21,7 @@ let operate = (a, oper, b) => {
 	if (oper == 'divide'){
 		divide(a,b)
 		updateCalc()
-	}
-	console.log(displayValue + " " + result)
-	
+	}	
 }
 
 //num storage
@@ -35,7 +33,6 @@ let updateDisplay = () => display.textContent = displayValue
 
 let updateCalc = () =>{
 	displayValue = result
-	console.log(result)
 	updateDisplay()
 	a = result
 }
@@ -69,7 +66,6 @@ let addOper = () => {
 
 let equal = () =>{
 	b = displayValue;
-	console.log(a + oper + b)
 	operate(Number(a), oper, Number(b));
 }
 
