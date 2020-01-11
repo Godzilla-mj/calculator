@@ -49,7 +49,7 @@ let addOper = (a, oper) => {
 const numBtns = document.querySelectorAll('.num');
 numBtns.forEach(button =>{
 	button.addEventListener('click', addDisplay);
-	console.log("numBtn clicked")
+		console.log("numBtn clicked")
 });
 
 const operBtns = document.querySelectorAll('.oper');
