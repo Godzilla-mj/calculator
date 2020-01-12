@@ -55,6 +55,17 @@ let updateDisplay = () => display.textContent = displayValue;
 
 let updatePrevCalc = () => prevDisplay.textContent = prevDisplayValue;
 
+let addOper = () => {
+	a = displayValue;
+	findSign()
+	clearDisplay()
+}
+
+let equal = () =>{
+	b = displayValue;
+	operate(Number(a), oper, Number(b));
+}
+
 let updateCalc = () =>{
 	displayValue = result
 	updateDisplay()
@@ -81,6 +92,7 @@ function prevCalc(){
 
 }
 
+//clear everything, current display, and last number functions
 let clearE = () => {
 	a = 0
 	b = 0
@@ -90,20 +102,28 @@ let clearE = () => {
 }
 
 let clearDisplay = () => (displayValue = '', updateDisplay())
+
 let delLast = () => {displayValue.length > 1 ?
 	displayValue = displayValue.slice(0,-1) : displayValue = 0;
 	updateDisplay()
 }
 
-let addOper = () => {
-	a = displayValue;
-	findSign()
-	clearDisplay()
+//input decimal
+
+let inputDot = () =>{
+	for (i = 0; i < displayValue.length; i++){
+		if(displayValue.indexOf(".") < 0){
+			displayValue += "."
+			updateDisplay()
+		}
+	}
 }
 
-let equal = () =>{
-	b = displayValue;
-	operate(Number(a), oper, Number(b));
+//change value to positive or negative
+
+let changeSign = () =>{
+	displayValue *= -1
+	updateDisplay()
 }
 
 
@@ -127,5 +147,8 @@ document.querySelector('#CE').addEventListener('click', clearE)
 document.querySelector('#C').addEventListener('click', clearDisplay)
 document.querySelector('#del').addEventListener('click', delLast)
 document.querySelector('#eq').addEventListener('click', equal)
+
+document.querySelector('#dot').addEventListener('click', inputDot)
+document.querySelector('#plusmn').addEventListener('click', changeSign)
 
 clearE()
