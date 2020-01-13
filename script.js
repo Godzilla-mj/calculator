@@ -9,23 +9,20 @@ let operate = (a, oper, b) => {
 	if (oper == 'add'){
 		sign = "\u002B"
 		add(a,b)
-		updateCalc()
 	}
-	if (oper == 'subtract'){
+	else if (oper == 'subtract'){
 		sign = "\u2212"
 		subtract(a,b)
-		updateCalc()
 	}
-	if (oper == 'multiply'){
+	else if (oper == 'multiply'){
 		sign = "\u00D7"
 		multiply(a,b)
-		updateCalc()
 	}
-	if (oper == 'divide'){
+	else if (oper == 'divide'){
 		sign = "\u00F7";
 		divide(a,b)
-		updateCalc()
 	}	
+	return(updateCalc())
 }
 
 let sign;
@@ -48,7 +45,8 @@ function findSign(){
 //num storage
 let prevDisplay = document.querySelector('#prevDisplay'); 
 let display = document.querySelector("#display");
-let displayValue = 0;
+let displayValue ;
+let iteration;
 
 //display functions
 let updateDisplay = () => display.textContent = displayValue;
@@ -56,12 +54,26 @@ let updateDisplay = () => display.textContent = displayValue;
 let updatePrevCalc = () => prevDisplay.textContent = prevDisplayValue;
 
 let addOper = () => {
-	a = displayValue;
-	findSign()
-	clearDisplay()
+	if(iteration == 0){
+		iteration++
+		a = displayValue;
+		findSign()
+		clearDisplay()
+	}
+	if(displayValue == ""){
+		findSign()
+	}
+	else{
+		iteration++
+		b = displayValue
+		equal()
+		findSign()
+		clearDisplay()
+	}
 }
 
 let equal = () =>{
+	iteration = 0
 	b = displayValue;
 	operate(Number(a), oper, Number(b));
 }
@@ -94,6 +106,7 @@ function prevCalc(){
 
 //clear everything, current display, and last number functions
 let clearE = () => {
+	iteration = 0
 	a = 0
 	b = 0
 	result = 0
@@ -109,7 +122,6 @@ let delLast = () => {displayValue.length > 1 ?
 }
 
 //input decimal
-
 let inputDot = () =>{
 	for (i = 0; i < displayValue.length; i++){
 		if(displayValue.indexOf(".") < 0){
@@ -120,13 +132,10 @@ let inputDot = () =>{
 }
 
 //change value to positive or negative
-
 let changeSign = () =>{
 	displayValue *= -1
 	updateDisplay()
 }
-
-
 //button event listeners
 const numBtns = document.querySelectorAll('.num');
 numBtns.forEach(button =>{
@@ -142,12 +151,10 @@ operBtns.forEach(button =>{
 	});
 });
 
-
 document.querySelector('#CE').addEventListener('click', clearE)
 document.querySelector('#C').addEventListener('click', clearDisplay)
 document.querySelector('#del').addEventListener('click', delLast)
 document.querySelector('#eq').addEventListener('click', equal)
-
 document.querySelector('#dot').addEventListener('click', inputDot)
 document.querySelector('#plusmn').addEventListener('click', changeSign)
 
