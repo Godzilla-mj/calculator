@@ -1,7 +1,20 @@
 
 
-.display{
+.span4 {
 	grid-column: span 4;
+}
+
+.span1 {
+	grid-column: span 1;
+	text-align: center;
+}
+
+.span3 {
+	grid-column: span 3;
+}
+
+.display {
+
 	text-align: right;
 	font-size: 24px;
 	}
