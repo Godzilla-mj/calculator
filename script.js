@@ -178,7 +178,6 @@ document.addEventListener('keydown', (event) => {
 	} else { 
 		value = key
 		addDisplay()
-		console.log(event)
 	}
 });
 
