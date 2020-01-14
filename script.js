@@ -13,7 +13,10 @@ let operate = (n1, operator, n2) => {
 	} else if (operator == 'multiply'){
 		result = Number(n1) * Number(n2)
 	} else if (operator == 'divide'){
-		return(n2 != 0 ? result = Math.round(Number(n1)/Number(n2) * 10) / 10 : "ERROR: div/0")
+		if(n2 != 0){
+			result = Math.round(Number(n1)/Number(n2) * 10) / 10
+		}else{return("ERROR: div/0")
+		}
 	}
 	return updateCalc()
 }
@@ -38,7 +41,11 @@ let displayValue;
 let iteration;
 
 //display functions
-let updateDisplay = () => display.textContent = displayValue;
+let updateDisplay = () => {
+	if (displayValue != ''){
+		display.textContent = Math.round(displayValue * 10)/10
+	}else{display.textContent = displayValue}
+}
 
 function addDisplay() {
 	if(displayValue == 0){
@@ -90,7 +97,7 @@ let updateOperatorDisplay = () => operatorDisplay.textContent = findSign(operato
 //input decimal
 let inputDot = () =>{
 	for (i=0; i<displayValue.length; i++){
-		if(displaveValue.indexOf('.')<0){
+		if(displayValue.indexOf('.')<0){
 			displayValue += '.'
 			updateDisplay()
 		}
@@ -101,15 +108,15 @@ let changeSign = () =>(displayValue *= -1,updateDisplay())
 //reset all variables to 0
 let clearE = () => {
 	iteration = 0
-	n1 = 0
-	n2 = 0
-	result = 0
+	n1 = ''
+	n2 = ''
+	result = ''
 	operator = ''
 	clearDisplay()
 }
 //reset only current display
 let clearDisplay = () => {
-	displayValue = ''
+	displayValue = ""
 	updateDisplay()
 	updateOperatorDisplay()
 }
@@ -139,5 +146,9 @@ document.querySelector('#del').addEventListener('click', delLast)
 document.querySelector('#eq').addEventListener('click', equal)
 document.querySelector('#dot').addEventListener('click', inputDot)
 document.querySelector('#plusmn').addEventListener('click', changeSign)
+
+//keypress event listener
+
+
 
 clearE()
