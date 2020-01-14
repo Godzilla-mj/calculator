@@ -15,12 +15,11 @@ let operate = (n1, operator, n2) => {
 	} else if (operator == 'divide'){
 		if(n2 != 0){
 			result = Math.round(Number(n1)/Number(n2) * 10) / 10
-		}else{return("ERROR: div/0")
-		}
+		}else{"ERROR: div/0"}
 	}
 	return updateCalc()
 }
-
+//find operator symbol
 let findSign = (operator) =>{
 	if (operator == 'add'){
 		return(sign = "\u002B")
@@ -34,9 +33,10 @@ let findSign = (operator) =>{
 }
 
 //num storage
-let prevDisplay = document.querySelector('#prevDisplay');
-let operatorDisplay = document.querySelector('#operatorDisplay'); 
-let display = document.querySelector("#display");
+const prevDisplay = document.querySelector('#prevDisplay');
+const operatorDisplay = document.querySelector('#operatorDisplay'); 
+const display = document.querySelector("#display");
+
 let displayValue;
 let iteration;
 
@@ -48,9 +48,6 @@ let updateDisplay = () => {
 }
 
 function addDisplay() {
-	if(displayValue == 0){
-		displayValue = ''
-	}
 	displayValue += this.value
 	updateDisplay()
 };
@@ -130,15 +127,22 @@ const numBtns = document.querySelectorAll('.num');
 numBtns.forEach(button =>{
 	button.addEventListener('click', addDisplay);
 });
+
+//operator input function
+let operatorInput = () =>{
+	updateOperatorDisplay()
+	addOperator()
+}
+
 //operator button event listener
 const operBtns = document.querySelectorAll('.oper');
 operBtns.forEach(button =>{
 	button.addEventListener('click', (e) =>{
 		operator = button.id
-		updateOperatorDisplay()
-		addOperator()
+		operatorInput()
 	});
 });
+
 //function button event listener
 document.querySelector('#CE').addEventListener('click', clearE)
 document.querySelector('#C').addEventListener('click', clearDisplay)
@@ -148,7 +152,36 @@ document.querySelector('#dot').addEventListener('click', inputDot)
 document.querySelector('#plusmn').addEventListener('click', changeSign)
 
 //keypress event listener
+document.addEventListener('keydown', (event) => {
+	const { key } = event;
+	if(isNaN(key)){
+		if (key === "Enter") {
+			equal()
+			return updateDisplay()
+		}else if (key == "+"){
+			operator = 'add'
+			return operatorInput()
+		}else if (key == "-"){
+			operator = 'subtract'
+			return operatorInput()
+		}else if (key == "*"){
+			operator = 'multiply'
+			return operatorInput()
+		}else if (key == '/'){
+			operator = 'divide'
+			return operatorInput()
+		}else if (key == 'Escape'){
+			return clearE()
+		}else if (key == 'Backspace'){
+			return delLast()
+		}
+	} else { 
+		value = key
+		addDisplay()
+		console.log(event)
+	}
+});
 
 
 
-clearE()
+clearE();
