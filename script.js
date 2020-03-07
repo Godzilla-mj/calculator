@@ -1,5 +1,3 @@
-
-
 let n1; //firstOperand
 let n2; //lastOperand
 let sign; //for previous display operator symbol
@@ -48,7 +46,11 @@ let updateDisplay = () => {
 }
 
 function addDisplay() {
-	displayValue += this.value
+	if(waitingN2){
+		displayValue += this.value;
+		waitingN2 = false;
+	}
+	displayValue = displayValue === '0' ? this.value : displayValue + value;
 	updateDisplay()
 };
 
@@ -144,8 +146,8 @@ operBtns.forEach(button =>{
 });
 
 //function button event listener
-document.querySelector('#CE').addEventListener('click', clearE)
-document.querySelector('#C').addEventListener('click', clearDisplay)
+document.querySelector('#AC').addEventListener('click', clearE)
+document.querySelector('#CE').addEventListener('click', clearDisplay)
 document.querySelector('#del').addEventListener('click', delLast)
 document.querySelector('#eq').addEventListener('click', equal)
 document.querySelector('#dot').addEventListener('click', inputDot)
